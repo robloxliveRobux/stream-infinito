@@ -1,18 +1,17 @@
 FROM node:18-bullseye-slim
 
-# Inyectar dependencias: FFmpeg para streaming y Wget para descargas pesadas
+# Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y ffmpeg wget
 
 WORKDIR /app
 
-# Instalar estructura del servidor
 COPY package*.json ./
 RUN npm install
-
-# Copiar el código
 COPY . .
 
 EXPOSE 3000
 
-# Ejecución maestra: Inicia el ping web, descarga el video en la nube e inicia el bucle RTMP
-CMD node server.js & wget -O video.mp4 "$VIDEO_URL" && ffmpeg -re -stream_loop -1 -i video.mp4 -c:v copy -c:a copy -f flv "rtmp://a.rtmp.youtube.com/live2/$YT_KEY"
+# Script maestro: Levanta la web, descarga el video de la URL y busca cualquier .mp4 para transmitirlo en bucle infinito
+CMD node server.js & \
+    if [ ! -f "video_final.mp4" ]; then wget -O video_final.mp4 "$VIDEO_URL"; fi && \
+    while true; do ffmpeg -re -stream_loop -1 -i video_final.mp4 -c:v copy -c:a copy -f flv "rtmp://a.rtmp.youtube.com/live2/$YT_KEY"; sleep 5; done
