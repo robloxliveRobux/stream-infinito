@@ -10,8 +10,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD node server.js & \
-    rm -f video_final.mp4 && \
+CMD rm -f video_final.mp4 && \
     wget -O video_final.mp4 "$VIDEO_URL" && \
     while true; do ffmpeg -re -stream_loop -1 -i video_final.mp4 \
     -vf "scale=-2:720" \
