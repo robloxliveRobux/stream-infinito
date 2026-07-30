@@ -15,5 +15,5 @@ CMD node server.js & \
     wget -O video_final.mp4 "$VIDEO_URL" && \
     while true; do ffmpeg -re -stream_loop -1 -i video_final.mp4 \
     -c:v libx264 -preset ultrafast -b:v 1000k -maxrate 1000k -bufsize 2000k \
-    -pix_fmt yuv420p -c:a aac -b:a 96k \
+    -pix_fmt yuv420p -g 120 -keyint_min 120 -c:a aac -b:a 96k \
     -f flv "rtmp://a.rtmp.youtube.com/live2/$YT_KEY"; sleep 5; done
