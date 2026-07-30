@@ -1,7 +1,11 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const http = require('http');
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => res.send('Sistema de Stream 24/7 de Alta Capacidad ACTIVO.'));
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Stream 24/7 is active and running perfectly!');
+});
 
-app.listen(port, () => console.log(`Puerto de monitoreo abierto: ${port}`));
+server.listen(PORT, () => {
+  console.log(`Servidor web activo en el puerto ${PORT}`);
+});
