@@ -1,5 +1,5 @@
 app = "stream-infinito"
-primary_region = "iad"
+primary_region = "ewr"
 
 [build]
   dockerfile = "Dockerfile"
