@@ -1,9 +1,6 @@
 app = "stream-infinito"
 primary_region = "ewr"
 
-[build]
-  dockerfile = "Dockerfile"
-
 [env]
   VIDEO_URL = "https://github.com/robloxliveRobux/stream-infinito/releases/download/v1.0/video.-.2026-07-28T140215.391.1.mp4"
   YT_KEY = "xfu3-eha8-fme8-07ey-dgaq"
