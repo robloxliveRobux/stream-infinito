@@ -8,6 +8,13 @@ primary_region = "iad"
   VIDEO_URL = "https://github.com/robloxliveRobux/stream-infinito/releases/download/v1.0/video.-.2026-07-28T140215.391.1.mp4"
   YT_KEY = "xfu3-eha8-fme8-07ey-dgaq"
 
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = false
+  min_machines_running = 1
+
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
